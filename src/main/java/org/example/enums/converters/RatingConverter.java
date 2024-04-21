@@ -1,7 +1,8 @@
-package org.example;
+package org.example.enums.converters;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import org.example.enums.Rating;
 
 @Converter(autoApply = true)
 public class RatingConverter implements AttributeConverter<Rating, String> {

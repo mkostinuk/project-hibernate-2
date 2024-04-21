@@ -1,4 +1,4 @@
-package org.example;
+package org.example.enums.converters;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;

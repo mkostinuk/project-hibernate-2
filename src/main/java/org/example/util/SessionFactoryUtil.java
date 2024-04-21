@@ -1,6 +1,7 @@
-package org.example;
+package org.example.util;
 
 import org.example.entities.*;
+import org.example.enums.LanguageName;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
@@ -23,11 +24,12 @@ public class SessionFactoryUtil {
                     addAnnotatedClass(Film.class).
                     addAnnotatedClass(FilmText.class).
                     addAnnotatedClass(Inventory.class).
-                    addAnnotatedClass(Language.class).
+                    addAnnotatedClass(LanguageName.class).
                     addAnnotatedClass(Payment.class).
                     addAnnotatedClass(Rental.class).
                     addAnnotatedClass(Staff.class).
-                    addAnnotatedClass(Store.class)
+                    addAnnotatedClass(Store.class).
+                    addAnnotatedClass(Language.class)
                     .buildSessionFactory();
         }
         return sessionFactory;

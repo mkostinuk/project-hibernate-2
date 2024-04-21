@@ -3,10 +3,11 @@ package org.example.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
-import org.example.Rating;
-import org.example.RatingConverter;
-import org.example.SpecialFeatures;
-import org.example.YearConverter;
+import lombok.ToString;
+import org.example.enums.Rating;
+import org.example.enums.converters.RatingConverter;
+import org.example.enums.SpecialFeatures;
+import org.example.enums.converters.YearConverter;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "film", schema = "movie")
-
+@ToString
 public class Film {
     @Setter
     @Getter
@@ -93,8 +94,8 @@ public class Film {
             inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "category_id"))
     private Set<Category> categories;
 
-    public void setSpecialFeatures(Set<SpecialFeatures> specialFeatures) {
-        specialFeatures.stream().map(SpecialFeatures::getValue).collect(Collectors.joining(","));
+    public void setSpecialFeatures(Set<SpecialFeatures> s) {
+        specialFeatures = s.stream().map(SpecialFeatures::getValue).collect(Collectors.joining(","));
     }
 
     public Set<SpecialFeatures> getSpecialFeatures() {

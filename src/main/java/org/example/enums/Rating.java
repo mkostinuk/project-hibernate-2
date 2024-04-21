@@ -1,4 +1,4 @@
-package org.example;
+package org.example.enums;
 
 import lombok.Getter;
 
@@ -10,7 +10,8 @@ public enum Rating {
     R("R"),
     NC17("NC-17");
     private final String value;
-    Rating(String value){
+
+    Rating(String value) {
         this.value = value;
     }
 

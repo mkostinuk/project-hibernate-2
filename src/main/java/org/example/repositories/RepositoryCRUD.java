@@ -1,6 +1,7 @@
 package org.example.repositories;
 
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -8,7 +9,7 @@ import java.util.stream.Stream;
 
 public abstract class RepositoryCRUD<T, K> {
     private final Class<T> clazz;
-    private final Session session;
+    protected final Session session;
 
     protected RepositoryCRUD(Class<T> clazz, Session session) {
         this.clazz = clazz;
@@ -20,21 +21,21 @@ public abstract class RepositoryCRUD<T, K> {
 
     }
 
-    public void save(T value) {
+    public T save(T value) {
         session.getTransaction().begin();
         session.persist(value);
         session.getTransaction().commit();
+        return value;
     }
 
     public Stream<T> findAll() {
         return session.createQuery("from " + clazz.getSimpleName(), clazz).getResultStream();
     }
 
-    public T update(T value) {
+    public void update(T value) {
         session.getTransaction().begin();
         session.merge(value);
         session.getTransaction().commit();
-        return value;
     }
 
     public void delete(T value) {
@@ -48,5 +49,10 @@ public abstract class RepositoryCRUD<T, K> {
         T value = findById(id).orElseThrow(NoSuchElementException::new);
         session.delete(value);
         session.getTransaction().commit();
+    }
+
+    public T getFirst() {
+        Query<T> tQuery = session.createQuery("from " + clazz.getSimpleName(), clazz).setMaxResults(1);
+        return tQuery.uniqueResult();
     }
 }

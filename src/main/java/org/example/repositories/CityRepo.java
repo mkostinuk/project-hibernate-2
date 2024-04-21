@@ -1,7 +1,7 @@
 package org.example.repositories;
 
 import lombok.Getter;
-import org.example.SessionFactoryUtil;
+import org.example.util.SessionFactoryUtil;
 import org.example.entities.City;
 
 public class CityRepo extends RepositoryCRUD<City, Short> {

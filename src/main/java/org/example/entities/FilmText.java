@@ -11,7 +11,6 @@ import lombok.Setter;
 public class FilmText {
     @Id
     @Column(name = "film_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Short id;
     private String title;
     @Column(columnDefinition = "text")
