@@ -1,4 +1,4 @@
-package org.example.entity;
+package org.example.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
@@ -15,6 +15,7 @@ public class Language {
     @Column(name = "language_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Byte languageId;
+    @Column(columnDefinition = "char")
     private String name;
     @Column(name = "last_update")
     @UpdateTimestamp
